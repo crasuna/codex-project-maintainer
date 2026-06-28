@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Project Maintainer"
+  short_description: "Maintain GitHub projects with Codex"
+  default_prompt: "Use $codex-project-maintainer to audit this repository for long-term maintainability."
