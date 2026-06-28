@@ -22,6 +22,7 @@ Use this reference only when the task needs a broad maintenance baseline, source
 Check for:
 
 - `README.md` with project purpose, quick start, core usage, support scope, and links to docs.
+- `MAINTENANCE.md` or equivalent maintainer-facing docs for long-lived projects. This is not a GitHub community health standard file, but it is useful for durable project operations.
 - `LICENSE` for distribution terms.
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, and `SUPPORT.md` for contributor and user expectations.
 - Issue templates and PR template that request reproduction steps, environment, expected/actual behavior, risk, and verification.
@@ -38,6 +39,23 @@ Official anchors:
 - CI with GitHub Actions: https://docs.github.com/en/actions/concepts/overview/about-continuous-integration-with-github-actions
 - Branch protection: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
 - Securing a repository: https://docs.github.com/en/code-security/getting-started/quickstart-for-securing-your-repository
+
+## MAINTENANCE.md baseline
+
+Recommend `MAINTENANCE.md` when a project needs a durable maintainer-facing handbook. Do not describe it as a GitHub-official community health file; treat it as a practical convention for long-lived projects and Codex handoffs.
+
+Useful sections:
+
+- Maintenance cadence: weekly, monthly, quarterly, and release-time checks.
+- Core commands: install, test, lint, typecheck, build, docs, release validation, and local preview.
+- Dependency policy: update frequency, lockfile rules, major-version review, and security advisory handling.
+- CI triage: where to inspect failures, local reproduction command, flaky-test policy, and escalation rules.
+- Release checklist: versioning, changelog or release notes, tags, artifacts, publishing, and rollback.
+- Security upkeep: dependency alerts, secret scanning, code scanning, SBOM/provenance if used, and supported versions.
+- Ownership: maintainers, `CODEOWNERS` expectations, review thresholds, and decision paths.
+- Codex usage: which skill to invoke, what Codex may change, which commands to run, and when Codex must stop and ask.
+- Automations: scheduled checks, expected outputs, triage behavior, and cleanup/archive expectations.
+- Escalation paths: public API changes, data migrations, production incidents, branch divergence, and unavailable credentials.
 
 ## Security and supply chain baseline
 

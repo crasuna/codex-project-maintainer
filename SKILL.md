@@ -13,7 +13,7 @@ Use this skill to help Codex keep a Git/GitHub project healthy over time. Prefer
 2. Inspect the project before recommending or editing anything:
    - Git status, current branch, remotes, recent commits, and untracked files.
    - Project manifests, package manager files, tool configs, CI workflows, test/build/lint scripts, and lockfiles.
-   - `README`, `LICENSE`, `CONTRIBUTING`, `SECURITY`, `CHANGELOG`, issue/PR templates, `CODEOWNERS`, release docs, and architecture or runbook docs.
+   - `README`, `LICENSE`, `CONTRIBUTING`, `SECURITY`, `CHANGELOG`, `MAINTENANCE.md` or equivalent maintainer-facing docs, issue/PR templates, `CODEOWNERS`, release docs, and architecture or runbook docs.
 3. Classify the request: health audit, routine maintenance, dependency/security update, CI failure, release preparation, documentation upkeep, or Codex automation/configuration.
 4. Use `references/maintenance-reference.md` when doing a broad audit, creating sustainable maintenance policy, choosing a Codex surface, or checking security/release/GitHub baselines.
 5. If changing files, identify user-owned work first. Keep edits scoped to the requested task and never mix unrelated changes into commits.
@@ -27,6 +27,7 @@ Use this skill to help Codex keep a Git/GitHub project healthy over time. Prefer
 Produce an evidence-based report, not a generic checklist. Cover only areas that can be assessed from repository evidence or cited official sources:
 
 - Project identity and scope: README clarity, install/start commands, supported platforms, license, ownership, and support policy.
+- Maintainer handbook: `MAINTENANCE.md` or equivalent docs for cadence, core commands, dependency policy, CI triage, release checks, security upkeep, and escalation paths.
 - Development loop: setup, tests, lint/typecheck, build, local environment examples, dependency manager, and reproducibility.
 - GitHub hygiene: CI workflows, branch protection expectations, templates, `CODEOWNERS`, Dependabot, code scanning, secret scanning, and security policy.
 - Release discipline: versioning, changelog, release notes, migration notes, rollback path, package/image publishing, and supported versions.
@@ -91,13 +92,18 @@ Follow active user and project instructions. When automatic commit/push is requi
 
 1. Confirm the target path is inside a Git worktree.
 2. Confirm the repository has a GitHub remote.
-3. Run obvious tests/build/lint/checks before committing.
-4. Stage only files changed for this task.
-5. Do not commit if tests fail, ownership of changes is ambiguous, or no GitHub remote exists.
-6. Use a concise commit message that summarizes the maintenance change.
-7. If push fails due to likely network issues, retry with increasing delay. If it fails due to auth, permission, non-fast-forward, branch protection, or remote rejection, stop and report the reason.
+3. Run `git fetch --prune`, `git status -sb`, and `git branch -vv` before committing or pushing. If the local branch is behind or has diverged from the remote, stop and ask for the merge/rebase strategy unless active instructions already define it.
+4. Run obvious tests/build/lint/checks before committing.
+5. Stage only files changed for this task.
+6. Do not commit if tests fail, ownership of changes is ambiguous, or no GitHub remote exists.
+7. Use a concise commit message that summarizes the maintenance change.
+8. If push fails due to likely network issues, retry with increasing delay. If it fails due to auth, permission, non-fast-forward, branch protection, or remote rejection, stop and report the reason.
 
 If automatic commit/push is not required, leave the worktree uncommitted unless the user asks.
+
+## Skill Validation
+
+When updating this skill, run the skill creator validator and the static skill evaluator before committing. For forward-tests that could modify files or remote services, use a fixture, temporary repository, or explicitly authorized target environment; never test destructive or publishing behavior against an unrelated live project.
 
 ## Output Shape
 
